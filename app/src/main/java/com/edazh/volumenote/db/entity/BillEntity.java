@@ -20,7 +20,6 @@ public class BillEntity implements Bill {
     private int id;
     private int folderId;
     private String name;
-    private String description;
     private Date updatedTime;
 
     public BillEntity() {
@@ -64,11 +63,6 @@ public class BillEntity implements Bill {
     @Override
     public String getName() {
         return this.name;
-    }
-
-    @Override
-    public String getDescription() {
-        return this.description;
     }
 
     @Override

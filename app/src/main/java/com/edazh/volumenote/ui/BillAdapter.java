@@ -57,7 +57,6 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.BillViewHolder
                     return newBill.getId() == oldBill.getId()
                             && newBill.getFolderId() == oldBill.getFolderId()
                             && Objects.equals(newBill.getName(), oldBill.getName())
-                            && Objects.equals(newBill.getDescription(), oldBill.getDescription())
                             && Objects.equals(newBill.getUpdatedTime(), oldBill.getUpdatedTime());
                 }
             });

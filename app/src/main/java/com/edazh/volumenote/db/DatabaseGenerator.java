@@ -17,17 +17,22 @@ import java.util.concurrent.TimeUnit;
 public class DatabaseGenerator {
 
     public static List<FolderEntity> generatorFolders() {
-        List<FolderEntity> folders = new ArrayList<>(20);
-        for (int i = 0; i < folders.size(); i++) {
+        List<FolderEntity> folders = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 20; i++) {
+            int folderNumber = random.nextInt(20) + 1;
             FolderEntity folder = new FolderEntity();
+            folder.setId(i + 1);
             folder.setName("folder " + (i + 1));
+            folder.setUpdatedTime(new Date(System.currentTimeMillis()
+                    - TimeUnit.DAYS.toMillis(folderNumber - i) + TimeUnit.HOURS.toMillis(i)));
             folders.add(folder);
         }
         return folders;
     }
 
     public static List<BillEntity> generatorBills(List<FolderEntity> folders) {
-        List<BillEntity> bills = new ArrayList<>(20);
+        List<BillEntity> bills = new ArrayList<>();
         Random random = new Random();
         for (Folder folder : folders) {
             int billsCount = random.nextInt(20) + 1;

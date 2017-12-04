@@ -11,8 +11,6 @@ public interface Bill {
 
     String getName();
 
-    String getDescription();
-
     int getFolderId();
 
     Date getUpdatedTime();

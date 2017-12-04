@@ -24,12 +24,9 @@ public interface BillDao {
     List<BillEntity> loadBillsSync(int folderId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void InsertAll(List<BillEntity> bills);
+    void insertAll(List<BillEntity> bills);
 
     @Query("select * from bills where id = :billId")
     LiveData<BillEntity> loadBill(int billId);
-
-    @Query("select count(*) as 'number of bills' from bills where folderId = :folderId")
-    int loadBillsCount(int folderId);
 
 }

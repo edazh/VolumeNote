@@ -32,11 +32,11 @@
 
         <TextView
             android:id="@+id/folder_name"
-            android:text="@{folder.name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="72dp"
             android:paddingTop="16dp"
+            android:text="@{folder.name}"
             android:textColor="@color/colorBlack"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="72dp"
             android:paddingBottom="16dp"
+            android:text="@{String.valueOf(folder.updatedTime)}"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/folder_name"

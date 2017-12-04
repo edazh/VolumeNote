@@ -7,30 +7,31 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.edazh.volumenote.model.Folder;
 
+import java.util.Date;
+
 /**
  * Created by edazh on 2017/12/2 0002.
  */
 @Entity(tableName = "folders")
 public class FolderEntity implements Folder {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
     private String name;
-    @Ignore
-    private int billsCount;
+    private Date updatedTime;
 
     public FolderEntity() {
     }
 
-    public FolderEntity(int id, String name, int billsCount) {
+    public FolderEntity(int id, String name, Date updatedTime) {
         this.id = id;
         this.name = name;
-        this.billsCount = billsCount;
+        this.updatedTime = updatedTime;
     }
 
     public FolderEntity(Folder folder) {
         this.id = folder.getId();
         this.name = folder.getName();
-        this.billsCount = folder.getBillsCount();
+        this.updatedTime = folder.getUpdatedTime();
     }
 
     public void setId(int id) {
@@ -39,10 +40,6 @@ public class FolderEntity implements Folder {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setBillsCount(int billsCount) {
-        this.billsCount = billsCount;
     }
 
     @Override
@@ -56,7 +53,12 @@ public class FolderEntity implements Folder {
     }
 
     @Override
-    public int getBillsCount() {
-        return 0;
+    public Date getUpdatedTime() {
+        return this.updatedTime;
+    }
+
+
+    public void setUpdatedTime(Date updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }

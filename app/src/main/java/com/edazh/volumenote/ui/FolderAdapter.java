@@ -55,7 +55,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
                     Folder newFolder = folderList.get(newItemPosition);
                     return newFolder.getId() == oldFolder.getId()
                             && Objects.equals(newFolder.getName(), oldFolder.getName())
-                            && newFolder.getBillsCount() == oldFolder.getBillsCount();
+                            && Objects.equals(newFolder.getUpdatedTime(), oldFolder.getUpdatedTime());
                 }
             });
             mFolderList = folderList;

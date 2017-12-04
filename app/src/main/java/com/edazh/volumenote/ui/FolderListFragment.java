@@ -51,11 +51,11 @@ public class FolderListFragment extends Fragment {
         viewModel.getFolders().observe(this, new Observer<List<FolderEntity>>() {
             @Override
             public void onChanged(@Nullable List<FolderEntity> myFolders) {
-                if (myFolders == null) {
-                    mBinding.setIsLoading(true);
-                } else {
+                if (myFolders != null) {
                     mBinding.setIsLoading(false);
                     mAdapter.setFolderList(myFolders);
+                } else {
+                    mBinding.setIsLoading(true);
                 }
                 mBinding.executePendingBindings();
             }

@@ -26,7 +26,7 @@ public class AppExecutors {
     }
 
     public AppExecutors() {
-        this(Executors.newSingleThreadExecutor(), new MainThreadExector(), Executors.newFixedThreadPool(3));
+        this(Executors.newSingleThreadExecutor(), new MainThreadExecutor(), Executors.newFixedThreadPool(3));
     }
 
     public Executor diskIO() {
@@ -41,7 +41,7 @@ public class AppExecutors {
         return mMainThread;
     }
 
-    public static class MainThreadExector implements Executor {
+    public static class MainThreadExecutor implements Executor {
         private Handler mMainThreadHandler = new Handler(Looper.getMainLooper());
 
         @Override

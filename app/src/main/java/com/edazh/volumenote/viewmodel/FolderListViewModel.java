@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Observer;
+import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -19,16 +20,16 @@ import java.util.List;
  */
 
 public class FolderListViewModel extends AndroidViewModel {
-    private MediatorLiveData<List<FolderEntity>> mObservableFolders;
+    private final MediatorLiveData<List<FolderEntity>> mObservableFolders;
 
     public FolderListViewModel(@NonNull Application application) {
         super(application);
 
         mObservableFolders = new MediatorLiveData<>();
+
         mObservableFolders.setValue(null);
 
         LiveData<List<FolderEntity>> folders = ((BasicApp) application).getRepository().loadFolders();
-
         mObservableFolders.addSource(folders, new Observer<List<FolderEntity>>() {
             @Override
             public void onChanged(@Nullable List<FolderEntity> folderEntities) {

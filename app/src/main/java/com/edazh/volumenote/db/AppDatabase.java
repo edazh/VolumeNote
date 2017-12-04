@@ -6,10 +6,12 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.edazh.volumenote.AppExecutors;
+import com.edazh.volumenote.db.converter.DateConverter;
 import com.edazh.volumenote.db.dao.BillDao;
 import com.edazh.volumenote.db.dao.FolderDao;
 import com.edazh.volumenote.db.entity.BillEntity;
@@ -21,6 +23,7 @@ import java.util.List;
  * Created by edazh on 2017/12/2 0002.
  */
 @Database(entities = {FolderEntity.class, BillEntity.class}, version = 1)
+@TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "volume-note-db";
@@ -58,6 +61,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                 addDelay();
 
                                 AppDatabase database = AppDatabase.getInstance(appContext, executors);
+
                                 List<FolderEntity> folders = DatabaseGenerator.generatorFolders();
                                 List<BillEntity> bills = DatabaseGenerator.generatorBills(folders);
 
@@ -77,6 +81,12 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 
+    private static void deleteDatabase(Context context) {
+        if (context.getDatabasePath(DATABASE_NAME).exists()) {
+            context.deleteDatabase(DATABASE_NAME);
+        }
+    }
+
     private void setDatabaseCreated() {
         mIsDatabaseCreated.postValue(true);
     }
@@ -86,7 +96,7 @@ public abstract class AppDatabase extends RoomDatabase {
             @Override
             public void run() {
                 database.folderDao().insertAll(folders);
-                database.billDao().InsertAll(bills);
+                database.billDao().insertAll(bills);
             }
         });
     }

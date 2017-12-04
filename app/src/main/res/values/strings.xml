@@ -2,4 +2,5 @@
     <string name="app_name">VolumeNote</string>
     <string name="loading_folder">正在加载文件夹...</string>
     <string name="linear_layout_manager">LinearLayoutManager</string>
+    <string name="loading_bills">正在加载账单...</string>
 </resources>

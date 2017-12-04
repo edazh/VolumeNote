@@ -17,11 +17,17 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             FolderListFragment fragment = new FolderListFragment();
 
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment, FolderListFragment.TAG).commit();
         }
     }
 
-    void show(Folder folder) {
+    public void show(Folder folder) {
+        BillListFragment fragment = BillListFragment.forFolder(folder.getId());
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("BillList")
+                .replace(R.id.fragment_container, fragment, null)
+                .commit();
     }
 }
