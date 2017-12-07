@@ -1,5 +1,7 @@
 package com.edazh.volumenote.db;
 
+import android.arch.persistence.room.RoomOpenHelper;
+
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.FolderEntity;
 import com.edazh.volumenote.model.Folder;
@@ -21,11 +23,7 @@ public class DatabaseGenerator {
         Random random = new Random();
         for (int i = 0; i < 20; i++) {
             int folderNumber = random.nextInt(20) + 1;
-            FolderEntity folder = new FolderEntity();
-            folder.setId(i + 1);
-            folder.setName("folder " + (i + 1));
-            folder.setUpdatedTime(new Date(System.currentTimeMillis()
-                    - TimeUnit.DAYS.toMillis(folderNumber - i) + TimeUnit.HOURS.toMillis(i)));
+            FolderEntity folder = new FolderEntity("folder " + (i + 1));
             folders.add(folder);
         }
         return folders;
@@ -37,11 +35,7 @@ public class DatabaseGenerator {
         for (Folder folder : folders) {
             int billsCount = random.nextInt(20) + 1;
             for (int i = 0; i < billsCount; i++) {
-                BillEntity bill = new BillEntity();
-                bill.setFolderId(folder.getId());
-                bill.setName("bill " + (i + 1));
-                bill.setUpdatedTime(new Date(System.currentTimeMillis()
-                        - TimeUnit.DAYS.toMillis(billsCount - i) + TimeUnit.HOURS.toMillis(i)));
+                BillEntity bill = new BillEntity(folder.getId(), "bill " + i);
                 bills.add(bill);
             }
         }

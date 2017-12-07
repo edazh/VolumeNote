@@ -49,11 +49,11 @@ public class DataRepository {
         return mObservableFolders;
     }
 
-    public LiveData<FolderEntity> loadFolder(int folderId) {
+    public LiveData<FolderEntity> loadFolder(String folderId) {
         return mDatabase.folderDao().loadFolder(folderId);
     }
 
-    public LiveData<List<BillEntity>> loadBills(int folderId) {
+    public LiveData<List<BillEntity>> loadBills(String folderId) {
         return mDatabase.billDao().loadBills(folderId);
     }
 }

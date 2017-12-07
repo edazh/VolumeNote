@@ -7,11 +7,11 @@ import java.util.Date;
  */
 
 public interface Bill {
-    int getId();
+    String getId();
 
     String getName();
 
-    int getFolderId();
+    String getFolderId();
 
     Date getUpdatedTime();
 }

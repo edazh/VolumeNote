@@ -18,15 +18,15 @@ import java.util.List;
 public interface BillDao {
 
     @Query("select * from bills where folderId = :folderId")
-    LiveData<List<BillEntity>> loadBills(int folderId);
+    LiveData<List<BillEntity>> loadBills(String folderId);
 
     @Query("select * from bills where folderId = :folderId")
-    List<BillEntity> loadBillsSync(int folderId);
+    List<BillEntity> loadBillsSync(String folderId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<BillEntity> bills);
 
     @Query("select * from bills where id = :billId")
-    LiveData<BillEntity> loadBill(int billId);
+    LiveData<BillEntity> loadBill(String billId);
 
 }

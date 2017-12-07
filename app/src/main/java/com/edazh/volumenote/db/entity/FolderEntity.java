@@ -4,46 +4,51 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.edazh.volumenote.model.Folder;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by edazh on 2017/12/2 0002.
  */
 @Entity(tableName = "folders")
 public class FolderEntity implements Folder {
+    @NonNull
     @PrimaryKey
-    private int id;
+    private String id;
     private String name;
     private Date updatedTime;
 
-    public FolderEntity() {
-    }
-
-    public FolderEntity(int id, String name, Date updatedTime) {
-        this.id = id;
+    @Ignore
+    public FolderEntity(String name) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.updatedTime = updatedTime;
+        this.updatedTime = new Date(System.currentTimeMillis());
     }
 
+    @Ignore
     public FolderEntity(Folder folder) {
         this.id = folder.getId();
         this.name = folder.getName();
         this.updatedTime = folder.getUpdatedTime();
     }
 
-    public void setId(int id) {
+    public FolderEntity(@NonNull String id, String name, Date updatedTime) {
         this.id = id;
+        this.name = name;
+        this.updatedTime = updatedTime;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    @NonNull
     @Override
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -55,10 +60,5 @@ public class FolderEntity implements Folder {
     @Override
     public Date getUpdatedTime() {
         return this.updatedTime;
-    }
-
-
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
     }
 }

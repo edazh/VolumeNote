@@ -51,7 +51,7 @@ public class BillListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        BillListViewModel.Factory factory = new BillListViewModel.Factory(getActivity().getApplication(), getArguments().getInt(KEY_FOLDER_ID));
+        BillListViewModel.Factory factory = new BillListViewModel.Factory(getActivity().getApplication(), getArguments().getString(KEY_FOLDER_ID));
         final BillListViewModel viewModel = ViewModelProviders.of(this, factory).get(BillListViewModel.class);
 
         subscribeToModel(viewModel);
@@ -85,10 +85,10 @@ public class BillListFragment extends Fragment {
         });
     }
 
-    public static BillListFragment forFolder(int folderId) {
+    public static BillListFragment forFolder(String folderId) {
         BillListFragment fragment = new BillListFragment();
         Bundle args = new Bundle();
-        args.putInt(KEY_FOLDER_ID, folderId);
+        args.putString(KEY_FOLDER_ID, folderId);
         fragment.setArguments(args);
         return fragment;
     }

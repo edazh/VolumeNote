@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public interface Folder {
-    int getId();
+    String getId();
 
     String getName();
 

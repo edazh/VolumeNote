@@ -23,8 +23,8 @@ public interface FolderDao {
     void insertAll(List<FolderEntity> folders);
 
     @Query("select * from folders where id = :folderId")
-    LiveData<FolderEntity> loadFolder(int folderId);
+    LiveData<FolderEntity> loadFolder(String folderId);
 
     @Query("select * from folders where id = :folderId")
-    FolderEntity loadFolderSync(int folderId);
+    FolderEntity loadFolderSync(String folderId);
 }

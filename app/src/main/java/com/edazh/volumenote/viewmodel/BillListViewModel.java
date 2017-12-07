@@ -26,12 +26,12 @@ public class BillListViewModel extends AndroidViewModel {
 
     private final LiveData<FolderEntity> mObservableFolder;
 
-    private final int mFolderId;
+    private final String mFolderId;
 
     private final LiveData<List<BillEntity>> mObservableBills;
 
 
-    public BillListViewModel(@NonNull Application application, final int folderId, DataRepository repository) {
+    public BillListViewModel(@NonNull Application application, final String folderId, DataRepository repository) {
         super(application);
         mFolderId = folderId;
         mObservableFolder = repository.loadFolder(mFolderId);
@@ -54,11 +54,11 @@ public class BillListViewModel extends AndroidViewModel {
         @NonNull
         private final Application mApplication;
 
-        private final int mFolderId;
+        private final String mFolderId;
 
         private final DataRepository mRepository;
 
-        public Factory(@NonNull Application application, int folderId) {
+        public Factory(@NonNull Application application, String folderId) {
             mApplication = application;
             mFolderId = folderId;
             mRepository = ((BasicApp) application).getRepository();

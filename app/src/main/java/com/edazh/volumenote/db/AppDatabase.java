@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by edazh on 2017/12/2 0002.
  */
-@Database(entities = {FolderEntity.class, BillEntity.class}, version = 1)
+@Database(entities = {FolderEntity.class, BillEntity.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 

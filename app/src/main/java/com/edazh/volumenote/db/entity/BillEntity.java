@@ -2,12 +2,15 @@ package com.edazh.volumenote.db.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.edazh.volumenote.model.Bill;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by edazh on 2017/12/2 0002.
@@ -16,22 +19,22 @@ import java.util.Date;
         {@ForeignKey(entity = FolderEntity.class, parentColumns = "id", childColumns = "folderId", onDelete = ForeignKey.CASCADE)},
         indices = {@Index(value = "folderId")})
 public class BillEntity implements Bill {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-    private int folderId;
+    @PrimaryKey
+    @NonNull
+    private String id;
+    private String folderId;
     private String name;
     private Date updatedTime;
 
-    public BillEntity() {
-    }
-
-    public BillEntity(int id, int folderId, String name, Date updatedTime) {
-        this.id = id;
+    @Ignore
+    public BillEntity(String folderId, String name) {
+        this.id = UUID.randomUUID().toString();
         this.folderId = folderId;
         this.name = name;
-        this.updatedTime = updatedTime;
+        this.updatedTime = new Date(System.currentTimeMillis());
     }
 
+    @Ignore
     public BillEntity(Bill bill) {
         this.id = bill.getId();
         this.folderId = bill.getFolderId();
@@ -39,24 +42,16 @@ public class BillEntity implements Bill {
         this.updatedTime = bill.getUpdatedTime();
     }
 
-    public void setId(int id) {
+    public BillEntity(@NonNull String id, String folderId, String name, Date updatedTime) {
         this.id = id;
-    }
-
-    public void setFolderId(int folderId) {
         this.folderId = folderId;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
     }
 
+    @NonNull
     @Override
-    public int getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -66,7 +61,7 @@ public class BillEntity implements Bill {
     }
 
     @Override
-    public int getFolderId() {
+    public String getFolderId() {
         return this.folderId;
     }
 
