@@ -1,5 +1,6 @@
 package com.edazh.volumenote.ui;
 
+import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -44,6 +45,9 @@ public class BillListFragment extends Fragment {
         @Override
         public void onClick(Bill bill) {
             //TODO:1-账单点击事件
+            if (getActivity().getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                ((MainActivity) getActivity()).show(bill);
+            }
         }
     };
 

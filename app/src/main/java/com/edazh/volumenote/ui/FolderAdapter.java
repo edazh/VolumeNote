@@ -67,7 +67,6 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
     public FolderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FolderItemBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.folder_item, parent, false);
         binding.setCallback(mFolderClickCallback);
-
         return new FolderViewHolder(binding);
     }
 

@@ -14,15 +14,17 @@ import com.edazh.volumenote.AppExecutors;
 import com.edazh.volumenote.db.converter.DateConverter;
 import com.edazh.volumenote.db.dao.BillDao;
 import com.edazh.volumenote.db.dao.FolderDao;
+import com.edazh.volumenote.db.dao.WoodDao;
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.FolderEntity;
+import com.edazh.volumenote.db.entity.WoodEntity;
 
 import java.util.List;
 
 /**
  * Created by edazh on 2017/12/2 0002.
  */
-@Database(entities = {FolderEntity.class, BillEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {FolderEntity.class, BillEntity.class, WoodEntity.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -31,6 +33,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract FolderDao folderDao();
 
     public abstract BillDao billDao();
+
+    public abstract WoodDao woodDao();
 
     private static AppDatabase sInstance;
 
@@ -64,8 +68,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
                                 List<FolderEntity> folders = DatabaseGenerator.generatorFolders();
                                 List<BillEntity> bills = DatabaseGenerator.generatorBills(folders);
+                                List<WoodEntity> woods = DatabaseGenerator.generatorWoods(bills);
 
-                                insertData(database, folders, bills);
+                                insertData(database, folders, bills, woods);
 
                                 //通知数据库已经创建完成
                                 database.setDatabaseCreated();
@@ -91,12 +96,13 @@ public abstract class AppDatabase extends RoomDatabase {
         mIsDatabaseCreated.postValue(true);
     }
 
-    private static void insertData(final AppDatabase database, final List<FolderEntity> folders, final List<BillEntity> bills) {
+    private static void insertData(final AppDatabase database, final List<FolderEntity> folders, final List<BillEntity> bills, final List<WoodEntity> woods) {
         database.runInTransaction(new Runnable() {
             @Override
             public void run() {
                 database.folderDao().insertAll(folders);
                 database.billDao().insertAll(bills);
+                database.woodDao().insertAll(woods);
             }
         });
     }

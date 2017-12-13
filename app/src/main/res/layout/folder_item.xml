@@ -12,11 +12,13 @@
         <variable
             name="callback"
             type="com.edazh.volumenote.ui.FolderClickCallback" />
+
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/list_item_selector"
         android:onClick="@{() -> callback.onClick(folder)}">
 
         <ImageView

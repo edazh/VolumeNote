@@ -4,6 +4,8 @@ import android.arch.persistence.room.RoomOpenHelper;
 
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.FolderEntity;
+import com.edazh.volumenote.db.entity.WoodEntity;
+import com.edazh.volumenote.model.Bill;
 import com.edazh.volumenote.model.Folder;
 
 import java.util.ArrayList;
@@ -40,5 +42,20 @@ public class DatabaseGenerator {
             }
         }
         return bills;
+    }
+
+    public static List<WoodEntity> generatorWoods(List<BillEntity> bills) {
+        List<WoodEntity> woods = new ArrayList<>();
+        Random random = new Random();
+        for (Bill bill : bills) {
+            int woodsCount = random.nextInt(20) + 1;
+            for (int i = 0; i < woodsCount; i++) {
+                for (int j = 0; j < 20; j++) {
+                    WoodEntity wood = new WoodEntity(bill.getId(), String.valueOf(i + 1), String.valueOf(i + j), "料头", String.valueOf(i * j + i + j));
+                    woods.add(wood);
+                }
+            }
+        }
+        return woods;
     }
 }

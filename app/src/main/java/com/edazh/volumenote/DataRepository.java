@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.edazh.volumenote.db.AppDatabase;
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.FolderEntity;
+import com.edazh.volumenote.db.entity.WoodEntity;
 
 import java.util.List;
 
@@ -55,5 +56,13 @@ public class DataRepository {
 
     public LiveData<List<BillEntity>> loadBills(String folderId) {
         return mDatabase.billDao().loadBills(folderId);
+    }
+
+    public LiveData<BillEntity> loadBill(String billId) {
+        return mDatabase.billDao().loadBill(billId);
+    }
+
+    public LiveData<List<WoodEntity>> loadWoods(String billId) {
+        return mDatabase.woodDao().loadWoods(billId);
     }
 }

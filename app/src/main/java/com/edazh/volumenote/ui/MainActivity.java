@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.edazh.volumenote.R;
+import com.edazh.volumenote.model.Bill;
 import com.edazh.volumenote.model.Folder;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("BillList")
+                .replace(R.id.fragment_container, fragment, null)
+                .commit();
+    }
+
+    public void show(Bill bill) {
+        WoodListFragment fragment = WoodListFragment.forBill(bill.getId());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack("WoodList")
                 .replace(R.id.fragment_container, fragment, null)
                 .commit();
     }
