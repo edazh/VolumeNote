@@ -4,4 +4,17 @@
     <string name="linear_layout_manager">LinearLayoutManager</string>
     <string name="loading_bills">正在加载账单...</string>
     <string name="loading_woods">正在加载木材...</string>
+    <string name="btn_confirm">确定</string>
+    <string name="folder_title">文件夹</string>
+    <string name="menu_add">添加</string>
+    <string name="new_folder">新建文件夹</string>
+    <string name="folder_name">文件夹名</string>
+    <string name="bill_name">账单名</string>
+    <string name="new_bill">新建账单</string>
+    <string name="cancel">取消</string>
+    <string name="create">创建</string>
+    <string name="delete">删除</string>
+    <string name="rename">重命名</string>
+    <string name="rename_bill">账单重命名</string>
+    <string name="rename_folder">文件夹重命名</string>
 </resources>

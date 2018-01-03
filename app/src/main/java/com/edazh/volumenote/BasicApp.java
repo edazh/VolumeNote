@@ -23,6 +23,6 @@ public class BasicApp extends Application {
     }
 
     public DataRepository getRepository() {
-        return DataRepository.getInstance(getDatabase());
+        return DataRepository.getInstance(getDatabase(),mExecutors);
     }
 }

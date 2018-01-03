@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/list_item_selector"
-        android:onClick="@{() -> callback.onClick(folder)}">
+        android:onClick="@{() -> callback.onClick(folder)}"
+        android:onLongClick="@{(theView) -> callback.onLongClick(theView,folder)}">
 
         <ImageView
             android:id="@+id/folder_img"

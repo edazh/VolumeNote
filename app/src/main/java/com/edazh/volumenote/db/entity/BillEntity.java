@@ -28,10 +28,12 @@ public class BillEntity implements Bill {
 
     @Ignore
     public BillEntity(String folderId, String name) {
-        this.id = UUID.randomUUID().toString();
-        this.folderId = folderId;
-        this.name = name;
-        this.updatedTime = new Date(System.currentTimeMillis());
+        this(UUID.randomUUID().toString(), folderId, name);
+    }
+
+    @Ignore
+    public BillEntity(@NonNull String id, String folderId, String name) {
+        this(id, folderId, name, new Date(System.currentTimeMillis()));
     }
 
     @Ignore

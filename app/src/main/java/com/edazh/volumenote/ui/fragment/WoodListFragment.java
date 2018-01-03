@@ -1,4 +1,4 @@
-package com.edazh.volumenote.ui;
+package com.edazh.volumenote.ui.fragment;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -15,6 +15,8 @@ import com.edazh.volumenote.databinding.WoodListFragmentBinding;
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.WoodEntity;
 import com.edazh.volumenote.model.Wood;
+import com.edazh.volumenote.ui.WoodAdapter;
+import com.edazh.volumenote.ui.WoodClickCallback;
 import com.edazh.volumenote.viewmodel.WoodListViewModel;
 
 import java.util.List;

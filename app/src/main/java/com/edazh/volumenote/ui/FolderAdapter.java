@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.edazh.volumenote.R;
 import com.edazh.volumenote.databinding.FolderItemBinding;
+import com.edazh.volumenote.databinding.FolderListFragmentBinding;
 import com.edazh.volumenote.model.Folder;
 
 import java.util.List;

@@ -24,9 +24,7 @@ public class FolderEntity implements Folder {
 
     @Ignore
     public FolderEntity(String name) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.updatedTime = new Date(System.currentTimeMillis());
+        this(UUID.randomUUID().toString(),name,new Date(System.currentTimeMillis()));
     }
 
     @Ignore
@@ -61,4 +59,5 @@ public class FolderEntity implements Folder {
     public Date getUpdatedTime() {
         return this.updatedTime;
     }
+
 }

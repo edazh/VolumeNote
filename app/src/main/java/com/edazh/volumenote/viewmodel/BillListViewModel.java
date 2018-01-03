@@ -12,6 +12,7 @@ import com.edazh.volumenote.BasicApp;
 import com.edazh.volumenote.DataRepository;
 import com.edazh.volumenote.db.entity.BillEntity;
 import com.edazh.volumenote.db.entity.FolderEntity;
+import com.edazh.volumenote.model.Bill;
 import com.edazh.volumenote.model.Folder;
 
 import java.util.List;
@@ -22,20 +23,20 @@ import java.util.List;
 
 public class BillListViewModel extends AndroidViewModel {
 
-    public ObservableField<Folder> folder = new ObservableField<>();
+    public ObservableField<FolderEntity> folder = new ObservableField<>();
 
     private final LiveData<FolderEntity> mObservableFolder;
 
-    private final String mFolderId;
-
     private final LiveData<List<BillEntity>> mObservableBills;
+
+    private final DataRepository mRepository;
 
 
     public BillListViewModel(@NonNull Application application, final String folderId, DataRepository repository) {
         super(application);
-        mFolderId = folderId;
-        mObservableFolder = repository.loadFolder(mFolderId);
-        mObservableBills = repository.loadBills(mFolderId);
+        mRepository = repository;
+        mObservableFolder = repository.loadFolder(folderId);
+        mObservableBills = repository.loadBills(folderId);
     }
 
     public LiveData<FolderEntity> getObservableFolder() {
@@ -48,6 +49,11 @@ public class BillListViewModel extends AndroidViewModel {
 
     public void setFolder(FolderEntity folder) {
         this.folder.set(folder);
+    }
+
+    public void deleteBill(Bill bill) {
+        if (bill instanceof BillEntity)
+            mRepository.deleteBill((BillEntity) bill);
     }
 
     public static class Factory implements ViewModelProvider.Factory {

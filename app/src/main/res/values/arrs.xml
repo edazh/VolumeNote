@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner">
+        <item>料头</item>
+        <item>腱子</item>
+        <item>大料</item>
+        <item>檩子</item>
+    </string-array>
+</resources>

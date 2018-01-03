@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.edazh.volumenote.viewmodel.FolderEditorViewModel" />
+    </data>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/folder_name"
+        android:padding="24dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="50">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/folder_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/ic_folder"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxEms="50"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@={viewModel.folderName}" />
+    </android.support.design.widget.TextInputLayout>
+</layout>

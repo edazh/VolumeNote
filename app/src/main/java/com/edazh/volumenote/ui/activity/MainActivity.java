@@ -1,26 +1,18 @@
-package com.edazh.volumenote.ui;
+package com.edazh.volumenote.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.edazh.volumenote.R;
 import com.edazh.volumenote.model.Bill;
 import com.edazh.volumenote.model.Folder;
+import com.edazh.volumenote.ui.fragment.BillListFragment;
+import com.edazh.volumenote.ui.fragment.FolderListFragment;
+import com.edazh.volumenote.ui.fragment.WoodListFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SingleFragmentActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        if (savedInstanceState == null) {
-            FolderListFragment fragment = new FolderListFragment();
-
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment, FolderListFragment.TAG).commit();
-        }
-    }
+    private Toast mToast;
 
     public void show(Folder folder) {
         BillListFragment fragment = BillListFragment.forFolder(folder.getId());
@@ -40,5 +32,18 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack("WoodList")
                 .replace(R.id.fragment_container, fragment, null)
                 .commit();
+    }
+
+    public void showToast(String msg) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        mToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        mToast.show();
+    }
+
+    @Override
+    protected Fragment createFragment() {
+        return FolderListFragment.newInstance();
     }
 }

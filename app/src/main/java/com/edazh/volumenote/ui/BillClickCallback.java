@@ -1,5 +1,7 @@
 package com.edazh.volumenote.ui;
 
+import android.view.View;
+
 import com.edazh.volumenote.model.Bill;
 
 /**
@@ -8,4 +10,6 @@ import com.edazh.volumenote.model.Bill;
 
 public interface BillClickCallback {
     void onClick(Bill bill);
+
+    boolean onLongClick(View view, Bill bill);
 }
